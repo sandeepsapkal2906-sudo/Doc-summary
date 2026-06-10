@@ -1,9 +1,8 @@
-import type { Config } from 'next'
-
-const config: Config = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
 }
 
-export default config
+module.exports = nextConfig
