@@ -8,6 +8,7 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 export default function Home() {
   const [summary, setSummary] = useState(null);
   const [insights, setInsights] = useState(null);
+  const [spellCheck, setSpellCheck] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [filename, setFilename] = useState('');
@@ -32,6 +33,7 @@ export default function Home() {
       const data = await response.json();
       setSummary(data.summary);
       setInsights(data.insights);
+      setSpellCheck(data.spell_check);
       setFilename(data.filename);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
@@ -43,6 +45,7 @@ export default function Home() {
   const handleReset = () => {
     setSummary(null);
     setInsights(null);
+    setSpellCheck(null);
     setError('');
     setFilename('');
   };
@@ -56,7 +59,7 @@ export default function Home() {
             📄 Document Summarizer
           </h1>
           <p className="text-lg text-slate-600">
-            Upload your PDF or DOCX documents and get instant summaries with key insights
+            Upload your PDF or DOCX documents and get instant summaries with key insights & spell check
           </p>
           <p className="text-sm text-green-600 mt-2">
             ✓ All processing happens locally on your machine - completely private
@@ -70,6 +73,7 @@ export default function Home() {
           <SummaryDisplay 
             summary={summary}
             insights={insights}
+            spellCheck={spellCheck}
             filename={filename}
             onReset={handleReset}
           />

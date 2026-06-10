@@ -8,7 +8,16 @@ class SummaryResponse(BaseModel):
     original_text_length: int
     summary: str
     insights: Dict
+    spell_check: Optional[Dict] = None
     processed_at: str
+
+
+class SpellCheckResponse(BaseModel):
+    """Response model for spell check"""
+    misspelled_count: int
+    misspelled_words: List[str]
+    corrections: Dict
+    accuracy_percentage: float
 
 
 class InsightModel(BaseModel):
